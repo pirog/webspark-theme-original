@@ -151,3 +151,118 @@ function asu_webspark_bootstrap_form_panels_edit_style_settings_form_alter(&$for
   }
 }
 
+/**
+ * Implements theme_links__system_main_menu.
+ */
+function asu_webspark_bootstrap_links__system_main_menu($variables) {
+  $links = $variables['links'];
+  $attributes = $variables['attributes'];
+  $heading = $variables['heading'];
+  unset($links['#sorted']);
+  unset($links['#theme_wrappers']);
+  global $language_url;
+  $output = '';
+
+  if (count($links) > 0) {
+    $output = '';
+
+    // Treat the heading first if it is present to prepend it to the
+    // list of links.
+    if (!empty($heading)) {
+      if (is_string($heading)) {
+        // Prepare the array that will be used when the passed heading
+        // is a string.
+        $heading = array(
+          'text' => $heading,
+          // Set the default level of the heading.
+          'level' => 'h2',
+        );
+      }
+      $output .= '<' . $heading['level'];
+      if (!empty($heading['class'])) {
+        $output .= drupal_attributes(array('class' => $heading['class']));
+      }
+      $output .= '>' . check_plain($heading['text']) . '</' . $heading['level'] . '>';
+    }
+
+    $output .= '<ul' . drupal_attributes($attributes) . '>';
+
+    $num_links = count($links);
+    $i = 1;
+
+    foreach ($links as $key => $link) {
+      $class = array($key);
+      $link['#attributes'] = (isset($link['#localized_options']['attributes'])) ? $link['#localized_options']['attributes'] : array();
+
+      // Add first/last/active classes to help out themers.
+      if ($i == 1) {
+        $class[] = 'first';
+      }
+      if ($i == $num_links) {
+        $class[] = 'last';
+      }
+      if (isset($link['#href']) && ($link['#href'] == $_GET['q'] || ($link['#href'] == '<front>' && drupal_is_front_page()))
+        && (empty($link['#language']) || $link['#language']->language == $language_url->language)) {
+        $class[] = 'active';
+      }
+      // Check for, and honor active states set by context menu reactions
+      if (module_exists('context')) {
+        $contexts = context_active_contexts();
+        foreach ($contexts as $context) {
+          if ((isset($context->reactions['menu']))) {
+            if ($link['#href'] == $context->reactions['menu']) {
+              $class[] = 'active';
+            }
+          }
+        }
+      }
+
+      $options['attributes'] = $link['#attributes'];
+
+      // Make list item a dropdown if we have child items.
+      if (!empty($link['#below'])) {
+        $class[] = 'dropdown';
+        $class[] = 'clearfix';
+      }
+      $output .= '<li' . drupal_attributes(array('class' => $class)) . '>';
+
+      if (isset($link['#href'])) {
+        // Pass in $link as $options, they share the same keys.
+        $output .= l($link['#title'], $link['#href'], array('attributes' => $link['#attributes']));
+      }
+      elseif (!empty($link['#title'])) {
+        // Wrap non-<a> links in <span> for adding title and class attributes.
+        if (empty($link['#html'])) {
+          $link['#title'] = check_plain($link['#title']);
+        }
+        $span_attributes = '';
+        if (isset($link['#attributes'])) {
+          $span_attributes = drupal_attributes($link['#attributes']);
+        }
+        $output .= '<span' . $span_attributes . '>' . $link['#title'] . '</span>';
+      }
+
+      // If link has child items, print a toggle and dropdown menu.
+      if (!empty($link['#below'])) {
+        $dropdown_id = 'main-menu-dropdown-' . $i;
+        $output .= '<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" id="' . $dropdown_id. '"><span class="caret"></span></a>';
+        $output .= theme('links__system_main_menu', array(
+          'links' => $link['#below'],
+          'attributes' => array(
+            'class' => array('dropdown-menu'),
+            'role' => 'menu',
+            'aria-labelledby' => $dropdown_id
+          ),
+        ));
+      }
+
+      $i++;
+      $output .= "</li>\n";
+    }
+
+    $output .= '</ul>';
+  }
+
+  return $output;
+}
+

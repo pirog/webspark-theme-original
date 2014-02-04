@@ -16,7 +16,8 @@ body {
   background-attachment: fixed;
 }
 
-#masthead .container {
+#masthead .container,
+#footerlower .container {
   padding: 0;
 }
 
@@ -24,28 +25,58 @@ body {
   border: 0;
 }
 
+.navbar-nav {
+  margin: 0;
+}
+
 .navbar-collapse {
   max-height: none;
 }
 
-@media ( min-width : 930px) {
+.navbar .nav > .dropdown > a {
+  padding-right: 23px;
+}
+
+@media ( min-width : 931px) {
   .navbar-collapse.collapse {
     display: block !important;
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
   }
-}
-
-@media (max-width: 930px) {
-  .navbar-default nav {
-    float: none;
+  .dropdown:hover .dropdown-menu {
+    display: block;
   }
-}
-
-/*new*/
-
-@media ( min-width : 930px) {
+  .navbar .nav > .dropdown > .dropdown-toggle {
+    display: none;
+  }
+  .navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .navbar-default .navbar-nav>li>a {
+    padding-left: 23px;
+    padding-right: 23px;
+    font-family: arial;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 10px;
+    color: #fff;
+    border-bottom: 5px transparent solid;
+    border-top: 5px transparent solid;
+  }
+  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    border-bottom: 5px #ffb310 solid;
+  }
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  ul.nav > li:hover > a {
+    color: #ffb310;
+    border-bottom: 5px #ffb310 solid;
+  }
   body {
     height: 100%;
     background-size: 100% 100%;
@@ -62,10 +93,75 @@ body {
   #page, #masthead {
     width: 1000px;
   }
+  .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    background: #ffb310;
+    background-color: #ffb310;
+    color: #000;
+  }
+    /* dropdown bootstrap overrides */
+  .dropdown-menu {
+    border: 0;
+    padding: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -moz-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
+    -ms-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
+    -o-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
+    -khtml-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.5);
+  }
+  .navbar .nav > .dropdown.active {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
 }
 
+@media (max-width: 931px) {
+  .navbar-default nav {
+    float: none;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #fff;
+    background-color: #666;
+    line-height: 19px;
+    padding: 10px 10px 10px 45px;
+    font-family: arial;
+    font-size: 16px;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu>li.first>a {
+    border-top: 3px #ffb310 solid;
+  }
+  .navbar-default .navbar-nav>li>a {
+    font-family: arial;
+    font-size: 18px;
+    color: #fff;
+    padding: 15px 35px 15px 35px;
+  }
+  .navbar-default .navbar-nav>li {
+    border-top: 1px #333 solid;
+  }
+  .navbar .nav > .dropdown > .dropdown-toggle {
+    padding-left: 5px;
+    padding-right: 40px;
+  }
+  .caret {
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-top: 10px solid;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+    color: #ffb310;
+    background-color: #666;
+  }
+}
 
-@media (max-width: 930px) and (min-width: 768px) {
+/*new*/
+
+@media (max-width: 931px) and (min-width: 768px) {
   .container,
   .navbar-static-top .container,
   .navbar-fixed-top .container,
@@ -79,23 +175,7 @@ body {
   #masthead {
     width: auto;
   }
-  .navbar-inner ul.nav li {
-    padding-left: 20px;
-  }
-  #menu .navbar-inner ul.nav {
-    width: auto;
-  }
-  #menu .navbar-inner ul.nav>a {
-    border-bottom: 5px transparent solid;
-    border-top: 5px transparent solid;
-  }
-  #menu ul.nav > li:hover>a  {
-    border-bottom: 5px transparent solid;
-    border-top: 5px transparent solid;
-  }
 }
-
-/* end gradient background bits */
 
 #admin-menu,
 #admin-menu .dropdown {
@@ -154,10 +234,6 @@ body {
   color: #000;
   border: 0;
   text-decoration: none;
-}
-
-#asu_search_module input.asu_search_box {
-  border-radius: 0px;
 }
 
 table#blocks {
@@ -232,54 +308,6 @@ h4 {
   text-shadow: none;
 }
 
-.navbar-sitename-collapse {
-  display: none;
-  font-family: arial;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 10px;
-  color: #fff;
-  border-bottom: 5px transparent solid;
-  border-top: 5px transparent solid;
-  padding: 10px;
-  float: left;
-}
-
-/* dropdown bootstrap overrides */
-.dropdown-menu {
-  border: 0;
-  padding: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
-  -ms-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
-  -o-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
-  -khtml-box-shadow: 0 5px 10px 2px rgba(0,0,0,0.5);
-  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.5);
-}
-
-#menu .navbar ul.nav ul.dropdown-menu li a:focus,
-#menu .navbar ul.nav ul.dropdown-menu li a:hover,
-ul.dropdown-menu .active a:hover,
-ul.dropdown-menu .active a:focus,
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
-  background: #ffb310;
-  background-color: #ffb310;
-  color: #000;
-  /* ie fix, bootstrap sets the bg as a gradient so we need to clear out the filters */
-  filter: none;
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
-}
-
-.navbar .nav > .dropdown.active {
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
 #closure {
   text-align: right;
   margin: 30px 30px 0 0;
@@ -335,15 +363,8 @@ ul.dropdown-menu .active a:focus,
   }
 
   /** WEBSPARK-87 - long title on smaller phones fix **/
-  .navbar-sitename-collapse {
-    border-bottom: 2px transparent solid;
-    border-top: 2px  transparent solid;
-    padding: 5px;
-  }
-
-  .navbar-sitename-collapse h1.site-title,
-  .navbar-sitename-collapse h1.site-title .first-word {
-    line-height: 28px;
+  #site-name-desktop h1 {
+    line-height: 32px;
   }
 
   /** WEBSPARK-88 - blockquote causing horizontal scroll **/

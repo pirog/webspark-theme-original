@@ -101,6 +101,15 @@
         <?php endif; ?>
       <?php endif; ?>
 
+      <?php if ($site_name): ?>
+        <div class="section visible-xs" id="site-name-desktop">
+          <h1 class='site-title'>
+            <span class='first-word'><?php print $site_name_first; ?> </span>
+            <?php print $site_name_last; ?>
+          </h1>
+        </div>
+      <?php endif; ?>
+
       <div class="navbar-header">
         <nav class="navbar-collapse collapse" role="navigation">
           <?php print render($page['menu']); ?>
@@ -113,15 +122,6 @@
             <?php print $asu_picture; ?>
           </div>
         <?php endif; ?>
-      <?php endif; ?>
-
-      <?php if ($site_name): ?>
-        <div class="section visible-xs" id="site-name-desktop">
-          <h1 class='site-title'>
-            <span class='first-word'><?php print $site_name_first; ?> </span>
-            <?php print $site_name_last; ?>
-          </h1>
-        </div>
       <?php endif; ?>
 
     </div>
