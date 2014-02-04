@@ -73,7 +73,7 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-  ul.nav > li:hover > a {
+  .navbar-header ul.nav > li:hover > a {
     color: #ffb310;
     border-bottom: 5px #ffb310 solid;
   }
@@ -344,16 +344,37 @@ h4 {
   margin: 0;
 }
 
-#main-wrapper .panel-pane .menu-block-wrapper ul a {
+/* defualt asu sidemenu style */
+.panel-pane.pane-menu-tree {
+  padding: 5px 15px;
+  background-color: #000;
+  border-right: 5px #ffb310 solid;
+}
+
+.panel-pane.pane-menu-tree h2.pane-title {
+  line-height: 0;
+  padding-bottom: 10px;
+  color: #ffb310;
+}
+
+.panel-pane.pane-menu-tree ul.menu {
+  padding-left: 10px;
+}
+
+#main-wrapper .panel-pane.pane-menu-tree ul a {
   list-style: none;
   font-size: 14px;
   font-weight: bold;
   line-height: 22px;
-  color: #999;
+  color: #fff;
 }
 
-#main-wrapper .panel-pane .menu-block-wrapper ul a:hover {
-  text-decoration: underline;
+#main-wrapper .panel-pane.pane-menu-tree a:hover {
+  color: #ffb310;
+}
+
+#main-wrapper .panel-pane.pane-menu-tree a.active {
+  color: #ffb310;
 }
 
 /* Android responsive dropdown bugfix */

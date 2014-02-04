@@ -11,6 +11,10 @@ regions[content] = Content
 regions[footer] = Footer
 regions[closure] = Closure
 
+features[] = favicon
+features[] = logo
+features[] = name
+
 settings[toggle_logo] = 0
 
 stylesheets[all][] = css/main.css
@@ -28,7 +32,5 @@ settings[toggle_secondary_menu] = 0
 settings[responsive_toggle] = 1
 settings[pane_styles_toggle] = 1
 settings[always_show_page_title] = 0
-
-plugins[panels][styles] = styles
 
 settings[default_picture] = 0

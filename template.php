@@ -158,6 +158,8 @@ function asu_webspark_bootstrap_links__system_main_menu($variables) {
   $links = $variables['links'];
   $attributes = $variables['attributes'];
   $heading = $variables['heading'];
+  $trail = menu_get_active_trail();
+  array_shift($trail);
   unset($links['#sorted']);
   unset($links['#theme_wrappers']);
   global $language_url;
@@ -216,13 +218,14 @@ function asu_webspark_bootstrap_links__system_main_menu($variables) {
           }
         }
       }
-
       $options['attributes'] = $link['#attributes'];
-
       // Make list item a dropdown if we have child items.
       if (!empty($link['#below'])) {
         $class[] = 'dropdown';
         $class[] = 'clearfix';
+      }
+      if ($link['#original_link']['mlid'] == $trail[0]['mlid']) {
+        $class[] = 'active';
       }
       $output .= '<li' . drupal_attributes(array('class' => $class)) . '>';
 
