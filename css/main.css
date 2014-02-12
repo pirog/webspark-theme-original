@@ -119,6 +119,12 @@ body {
   }
 }
 
+@media (max-width: 1000px) {
+  #page, #masthead {
+    width: auto;
+  }
+}
+
 @media (max-width: 931px) {
   .navbar-default nav {
     float: none;
