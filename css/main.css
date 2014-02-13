@@ -31,10 +31,15 @@ body {
 
 .navbar-collapse {
   max-height: none;
+  padding-right: 0;
 }
 
 .navbar .nav > .dropdown > a {
   padding-right: 23px;
+}
+
+.container>.navbar-header, .container-fluid>.navbar-header, .container>.navbar-collapse, .container-fluid>.navbar-collapse {
+  margin-right: 0;
 }
 
 @media ( min-width : 931px) {
