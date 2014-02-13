@@ -42,6 +42,10 @@ body {
   margin-right: 0;
 }
 
+.title {
+  line-height: normal;
+}
+
 @media ( min-width : 931px) {
   .navbar-collapse.collapse {
     display: block !important;
